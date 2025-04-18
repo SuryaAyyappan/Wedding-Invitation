@@ -1,0 +1,299 @@
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+/* Buttons */
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Utility classes */
+.text-center {
+  text-align: center;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Pulse animation for icons */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.pulse-icon {
+  animation: pulse 2s infinite;
+}
+
+/* Hover effect for event cards */
+.event-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Animated text shadow for event titles */
+.event-title {
+  transition: text-shadow 0.3s ease;
+}
+
+.event-title:hover {
+  text-shadow: 
+    0 0 5px rgba(255, 0, 0, 0.5),
+    0 0 10px rgba(255, 0, 0, 0.3),
+    0 0 15px rgba(255, 0, 0, 0.2);
+}
+
+/* Scale animation for the Get Directions button */
+.get-directions-btn {
+  transition: transform 0.3s ease;
+}
+
+.get-directions-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Decorative corner styles for event cards */
+.event-card::before,
+.event-card::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--primary-color);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.event-card::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.event-card::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+.event-card:hover::before,
+.event-card:hover::after {
+  opacity: 1;
+}
+
+/* Background styles for the EventDetails section */
+.event-details-section {
+  background-color: var(--primary-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.event-details-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(178, 34, 34, 0.1) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  pointer-events: none;
+}
+
+/* Glow effects */
+.shadow-glow {
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3),
+              0 0 20px rgba(255, 0, 0, 0.2),
+              0 0 30px rgba(255, 0, 0, 0.1);
+}
+
+.text-glow {
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.5),
+               0 0 10px rgba(255, 0, 0, 0.3),
+               0 0 15px rgba(255, 0, 0, 0.2);
+}
+
+/* Floating animation */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Enhanced pulse animation */
+@keyframes enhanced-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.5));
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+    filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.8));
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.5));
+  }
+}
+
+.pulse-enhanced {
+  animation: enhanced-pulse 2s infinite;
+}
+
+/* Fancy border */
+.fancy-border {
+  position: relative;
+  padding: 2rem;
+}
+
+.fancy-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid rgba(255, 0, 0, 0.3);
+  animation: borderGlow 2s infinite;
+}
+
+@keyframes borderGlow {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+  }
+}
+
+/* Elegant divider */
+.elegant-divider {
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    rgba(255, 0, 0, 0.5) 50%,
+    transparent 100%
+  );
+  position: relative;
+}
+
+.elegant-divider::before,
+.elegant-divider::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: rgba(255, 0, 0, 0.5);
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.elegant-divider::before {
+  left: 0;
+}
+
+.elegant-divider::after {
+  right: 0;
+}
+
+/* Font Declaration */
+@font-face {
+  font-family: 'Hello Youthen';
+  src: url('/fonts/HelloYouthen.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+} 
