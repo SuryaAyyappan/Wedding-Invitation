@@ -315,6 +315,11 @@ export default function Footer() {
           </p>
         </div>
       </div>
+      <img
+        className="absolute bottom-0 right-0 w-32 h-32 object-contain"
+        src={`${import.meta.env.BASE_URL}retro-2.webp`}
+        alt="retro"
+      />
     </footer>
   );
 }
