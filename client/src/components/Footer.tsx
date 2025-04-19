@@ -99,7 +99,7 @@ export default function Footer() {
       {/* Background image with overlay */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="/retro-2.webp" 
+          src={`${import.meta.env.BASE_URL}images/retro-2.webp`}
           alt="Wedding Background" 
           className="object-cover w-full h-full"
         />
@@ -317,7 +317,7 @@ export default function Footer() {
       </div>
       <img
         className="absolute bottom-0 right-0 w-32 h-32 object-contain"
-        src={`${import.meta.env.BASE_URL}retro-2.webp`}
+        src={`${import.meta.env.BASE_URL}images/retro-2.webp`}
         alt="retro"
       />
     </footer>
