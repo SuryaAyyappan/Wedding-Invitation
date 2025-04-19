@@ -5,6 +5,7 @@ import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
 export default defineConfig({
+  base: '/Wedding-Invitation/',
   plugins: [
     react(),
     runtimeErrorOverlay(),
@@ -26,29 +27,10 @@ export default defineConfig({
     },
   },
   root: path.resolve(import.meta.dirname, "client"),
-  base: '/Wedding-Invitation/',
-  publicDir: path.resolve(import.meta.dirname, "client/public"),
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
-    rollupOptions: {
-      output: {
-        manualChunks: undefined,
-        assetFileNames: (assetInfo) => {
-          const name = assetInfo.name || '';
-          const ext = name.split('.').pop() || '';
-          let extType = 'assets';
-          
-          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(ext)) {
-            extType = 'images';
-          } else if (/mp4|webm|ogg/i.test(ext)) {
-            extType = 'videos';
-          }
-          
-          return `assets/${extType}/[name]-[hash][extname]`;
-        },
-      }
-    }
+    chunkSizeWarningLimit: 1000,
   },
   server: {
     port: 5173,
