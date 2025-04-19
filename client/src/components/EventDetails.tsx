@@ -80,7 +80,7 @@ export default function EventDetails() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover video-smooth video-scale optimize-transitions"
         >
-          <source src={`${import.meta.env.BASE_URL}videos/onlyretro (4).mp4`} type="video/mp4" />
+          <source src="/onlyretro (4).mp4" type="video/mp4" />
         </video>
       </div>
 
@@ -130,7 +130,7 @@ export default function EventDetails() {
                       playsInline
                       className="absolute inset-0 w-full h-full object-cover video-smooth video-scale optimize-transitions"
                     >
-                      <source src={`${import.meta.env.BASE_URL}videos/marriage.mp4`} type="video/mp4" />
+                      <source src="/marriage.mp4" type="video/mp4" />
                     </video>
                   </div>
                 ) : event.title === "Wedding Reception" ? (
@@ -142,7 +142,7 @@ export default function EventDetails() {
                       playsInline
                       className="absolute inset-0 w-full h-full object-cover video-smooth video-scale optimize-transitions"
                     >
-                      <source src={`${import.meta.env.BASE_URL}videos/Reception.mp4`} type="video/mp4" />
+                      <source src="/Reception.mp4" type="video/mp4" />
                     </video>
                   </div>
                 ) : (

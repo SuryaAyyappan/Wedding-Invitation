@@ -5,7 +5,6 @@ import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
 export default defineConfig({
-  base: '/Wedding-Invitation/',
   plugins: [
     react(),
     runtimeErrorOverlay(),
@@ -30,7 +29,6 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
-    chunkSizeWarningLimit: 1000,
   },
   server: {
     port: 5173,
