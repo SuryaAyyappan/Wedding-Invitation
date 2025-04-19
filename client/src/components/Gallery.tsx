@@ -24,32 +24,32 @@ const preloadImages = () => {
 
 const images = [
   {
-    src: "/Image1.jpg",
+    src: "/images/Image1.jpg",
     alt: "Engagement Moment 1",
     description: "A special moment from our engagement"
   },
   {
-    src: "/Image2.jpg",
+    src: "/images/Image2.jpg",
     alt: "Engagement Moment 2",
     description: "A special moment from our engagement"
   },
   {
-    src: "/Image3.jpg",
+    src: "/images/Image3.jpg",
     alt: "Engagement Moment 3",
     description: "A special moment from our engagement"
   },
   {
-    src: "/Image4.jpg",
+    src: "/images/Image4.jpg",
     alt: "Engagement Moment 4",
     description: "A special moment from our engagement"
   },
   {
-    src: "/Image7.jpg",
+    src: "/images/Image7.jpg",
     alt: "Engagement Moment 5",
     description: "A special moment from our engagement"
   },
   {
-    src: "/Image8.jpg",
+    src: "/images/Image8.jpg",
     alt: "Engagement Moment 6",
     description: "A special moment from our engagement"
   }
@@ -91,11 +91,11 @@ export default function Gallery() {
       >
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           <img
-            src="/Backdroppp (1).jpg"
+            src="/images/Backdroppp (1).jpg"
             alt="Background"
             className="absolute inset-0 w-full h-full object-cover transform translate3d(0,0,0) backface-visibility-hidden"
             loading="eager"
-            fetchpriority="high"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-black bg-opacity-30"></div>
         </div>
