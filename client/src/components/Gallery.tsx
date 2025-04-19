@@ -7,13 +7,13 @@ import React from 'react';
 // Preload images to improve performance
 const preloadImages = () => {
   const imageUrls = [
-    "/Image1.jpg", 
-    "/Image2.jpg", 
-    "/Image3.jpg", 
-    "/Image4.jpg", 
-    "/Image7.jpg", 
-    "/Image8.jpg",
-    "/Backdroppp (1).jpg"
+    `${import.meta.env.BASE_URL}images/Image1.jpg`, 
+    `${import.meta.env.BASE_URL}images/Image2.jpg`, 
+    `${import.meta.env.BASE_URL}images/Image3.jpg`, 
+    `${import.meta.env.BASE_URL}images/Image4.jpg`, 
+    `${import.meta.env.BASE_URL}images/Image7.jpg`, 
+    `${import.meta.env.BASE_URL}images/Image8.jpg`,
+    `${import.meta.env.BASE_URL}images/Backdroppp (1).jpg`
   ];
   
   imageUrls.forEach(url => {
@@ -24,32 +24,32 @@ const preloadImages = () => {
 
 const images = [
   {
-    src: "/Image1.jpg",
+    src: `${import.meta.env.BASE_URL}images/Image1.jpg`,
     alt: "Engagement Moment 1",
     description: "A special moment from our engagement"
   },
   {
-    src: "/Image2.jpg",
+    src: `${import.meta.env.BASE_URL}images/Image2.jpg`,
     alt: "Engagement Moment 2",
     description: "A special moment from our engagement"
   },
   {
-    src: "/Image3.jpg",
+    src: `${import.meta.env.BASE_URL}images/Image3.jpg`,
     alt: "Engagement Moment 3",
     description: "A special moment from our engagement"
   },
   {
-    src: "/Image4.jpg",
+    src: `${import.meta.env.BASE_URL}images/Image4.jpg`,
     alt: "Engagement Moment 4",
     description: "A special moment from our engagement"
   },
   {
-    src: "/Image7.jpg",
+    src: `${import.meta.env.BASE_URL}images/Image7.jpg`,
     alt: "Engagement Moment 5",
     description: "A special moment from our engagement"
   },
   {
-    src: "/Image8.jpg",
+    src: `${import.meta.env.BASE_URL}images/Image8.jpg`,
     alt: "Engagement Moment 6",
     description: "A special moment from our engagement"
   }
@@ -91,11 +91,11 @@ export default function Gallery() {
       >
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           <img
-            src="/Backdroppp (1).jpg"
+            src={`${import.meta.env.BASE_URL}images/Backdroppp (1).jpg`}
             alt="Background"
             className="absolute inset-0 w-full h-full object-cover transform translate3d(0,0,0) backface-visibility-hidden"
             loading="eager"
-            fetchpriority="high"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-black bg-opacity-30"></div>
         </div>
