@@ -1,27 +1,31 @@
 import { useToast } from '@/hooks/use-toast';
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import React from 'react';
 
-export default function Footer() {
+type PopupType = 'phone' | 'whatsapp' | 'instagram' | null;
+
+export default function Footer(): JSX.Element {
   const { toast } = useToast();
-  const [activePopup, setActivePopup] = useState(null);
+  const [activePopup, setActivePopup] = useState<PopupType>(null);
   
   // Create refs for popup positioning
-  const phoneButtonRef = useRef(null);
-  const whatsappButtonRef = useRef(null);
-  const instagramButtonRef = useRef(null);
-  const popupRef = useRef(null);
+  const phoneButtonRef = useRef<HTMLDivElement>(null);
+  const whatsappButtonRef = useRef<HTMLDivElement>(null);
+  const instagramButtonRef = useRef<HTMLDivElement>(null);
+  const popupRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   // Handle click outside to close popups
   useEffect(() => {
-    function handleClickOutside(event) {
+    function handleClickOutside(event: MouseEvent): void {
       if (
         activePopup && 
         popupRef.current && 
-        !popupRef.current.contains(event.target) &&
-        phoneButtonRef.current && !phoneButtonRef.current.contains(event.target) &&
-        whatsappButtonRef.current && !whatsappButtonRef.current.contains(event.target) &&
-        instagramButtonRef.current && !instagramButtonRef.current.contains(event.target)
+        !popupRef.current.contains(event.target as Node) &&
+        phoneButtonRef.current && !phoneButtonRef.current.contains(event.target as Node) &&
+        whatsappButtonRef.current && !whatsappButtonRef.current.contains(event.target as Node) &&
+        instagramButtonRef.current && !instagramButtonRef.current.contains(event.target as Node)
       ) {
         setActivePopup(null);
       }
@@ -33,13 +37,13 @@ export default function Footer() {
     };
   }, [activePopup]);
 
-  const handleCallPhone = (number, event) => {
+  const handleCallPhone = (number: string, event: React.MouseEvent): void => {
     event.stopPropagation();
     // Direct call
     window.location.href = `tel:${number}`;
   };
 
-  const handleCopyPhone = (number, event) => {
+  const handleCopyPhone = (number: string, event: React.MouseEvent): void => {
     event.stopPropagation();
     navigator.clipboard.writeText(number);
     toast({
@@ -49,26 +53,68 @@ export default function Footer() {
     });
   };
 
-  const handleWhatsApp = (number, event) => {
+  const handleWhatsApp = (number: string, event: React.MouseEvent): void => {
     event.stopPropagation();
     const text = "Hi! I'm reaching out regarding your wedding invitation.";
     const whatsappUrl = `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
   };
 
-  const handleInstagram = (username, event) => {
+  const handleInstagram = (username: string, event: React.MouseEvent): void => {
     event.stopPropagation();
     window.open(`https://www.instagram.com/${username}`, '_blank', 'noopener,noreferrer');
   };
 
-  const togglePopup = (type) => {
+  const togglePopup = (type: PopupType): void => {
     setActivePopup(activePopup === type ? null : type);
+  };
+
+  const handleScroll = (event: React.WheelEvent<HTMLDivElement>): void => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const target = event.target as HTMLElement;
+    const elements = {
+      gallery: document.getElementById('gallery'),
+      rsvp: document.getElementById('rsvp'),
+      location: document.getElementById('location'),
+      footer: document.getElementById('footer')
+    };
+
+    const isGallerySection = Object.values(elements).some(
+      (element: HTMLElement | null) => element && target.contains(element)
+    );
+
+    if (isGallerySection) {
+      event.preventDefault();
+      container.scrollLeft += event.deltaY;
+    }
+  };
+
+  const handlePrevClick = (sectionNumber: number, event: React.MouseEvent<HTMLButtonElement>): void => {
+    event.preventDefault();
+    const container = containerRef.current;
+    if (!container) return;
+    container.scrollLeft -= window.innerWidth;
+  };
+
+  const handleNextClick = (sectionNumber: number, event: React.MouseEvent<HTMLButtonElement>): void => {
+    event.preventDefault();
+    const container = containerRef.current;
+    if (!container) return;
+    container.scrollLeft += window.innerWidth;
+  };
+
+  const scrollToSection = (sectionNumber: number): void => {
+    const container = containerRef.current;
+    if (!container) return;
+    container.scrollLeft = sectionNumber * window.innerWidth;
   };
 
   return (
     <footer className="py-10 relative text-white">
       {/* Custom Font Preload */}
-      <style jsx global>{`
+      <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Cormorant+Garamond:wght@400;500&family=Poppins:wght@500;700&family=Nunito:wght@400;500&display=swap');
         
         .couple-name {
@@ -97,13 +143,13 @@ export default function Footer() {
       `}</style>
       
       {/* Background image with overlay */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src="/images/retro-2.webp"
-          alt="Wedding Background" 
-          className="object-cover w-full h-full"
+      <div className="absolute inset-0 w-full h-full">
+        <img
+          src={`${import.meta.env.BASE_URL}images/retro-2.webp`}
+          alt="Retro Background"
+          className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-pink-800 opacity-80"></div>
+        <div className="absolute inset-0 bg-pink-900/60"></div>
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
@@ -144,7 +190,7 @@ export default function Footer() {
             "May your journey together be filled with love, laughter, and countless blessings."
           </p>
           <motion.div 
-            className="w-24 h-1 bg-white/60 mx-auto my-4"
+            className="w-24 h-1 bg-pink-300 mx-auto my-4"
             animate={{ 
               width: [24, 120, 24],
               opacity: [0.6, 1, 0.6]
@@ -162,7 +208,8 @@ export default function Footer() {
           {/* Phone Icon */}
           <div ref={phoneButtonRef} className="text-center">
             <motion.button
-              className="bg-white/20 hover:bg-white/30 w-14 h-14 rounded-full flex items-center justify-center"
+              className="bg-white/20 hover:bg-white/30 w-14 h-14 rounded-full flex 
+              items-center justify-center"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => togglePopup('phone')}
@@ -175,7 +222,8 @@ export default function Footer() {
           {/* WhatsApp Icon */}
           <div ref={whatsappButtonRef} className="text-center">
             <motion.button
-              className="bg-green-500/80 hover:bg-green-600/80 w-14 h-14 rounded-full flex items-center justify-center"
+              className="bg-green-500/80 hover:bg-green-600/80 w-14 h-14 rounded-full flex 
+              items-center justify-center"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => togglePopup('whatsapp')}
@@ -188,7 +236,8 @@ export default function Footer() {
           {/* Instagram Icon */}
           <div ref={instagramButtonRef} className="text-center">
             <motion.button
-              className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 w-14 h-14 rounded-full flex items-center justify-center"
+              className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 w-14 
+              h-14 rounded-full flex items-center justify-center"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => togglePopup('instagram')}
@@ -221,7 +270,8 @@ export default function Footer() {
                     <div key={contact.number} className="flex gap-2">
                       <motion.a
                         href={`tel:${contact.number}`}
-                        className="flex-1 flex items-center justify-between p-2 bg-white/20 rounded-lg hover:bg-white/30 transition-all"
+                        className="flex-1 flex items-center justify-between p-2 bg-white/20 
+                        rounded-lg hover:bg-white/30 transition-all"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         onClick={(e) => {
@@ -233,7 +283,8 @@ export default function Footer() {
                         <span className="text-sm">({contact.name})</span>
                       </motion.a>
                       <motion.button
-                        className="p-2 bg-white/30 rounded-lg hover:bg-white/40 transition-all"
+                        className="p-2 bg-white/30 rounded-lg hover:bg-white/40 
+                        transition-all"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={(e) => handleCopyPhone(contact.number, e)}
@@ -262,7 +313,8 @@ export default function Footer() {
                       href={`https://wa.me/${contact.number}?text=${encodeURIComponent("Hi! I'm reaching out regarding your wedding invitation.")}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block w-full flex items-center justify-between p-2 bg-green-500/50 rounded-lg hover:bg-green-600/50 transition-all"
+                      className="block w-full flex items-center justify-between p-2 
+                      bg-green-500/50 rounded-lg hover:bg-green-600/50 transition-all"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={(e) => {
@@ -291,7 +343,10 @@ export default function Footer() {
                       href={`https://www.instagram.com/${profile.username}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block w-full flex items-center justify-between p-2 bg-gradient-to-r from-purple-500/40 via-pink-500/40 to-orange-500/40 rounded-lg hover:from-purple-600/40 hover:via-pink-600/40 hover:to-orange-600/40 transition-all"
+                      className="block w-full flex items-center justify-between p-2 
+                      bg-gradient-to-r from-purple-500/40 via-pink-500/40 to-orange-500/40 
+                      rounded-lg hover:from-purple-600/40 hover:via-pink-600/40 
+                      hover:to-orange-600/40 transition-all"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={(e) => {
@@ -315,11 +370,6 @@ export default function Footer() {
           </p>
         </div>
       </div>
-      <img
-        className="absolute bottom-0 right-0 w-32 h-32 object-contain"
-        src="/images/retro-2.webp"
-        alt="retro"
-      />
     </footer>
   );
 }

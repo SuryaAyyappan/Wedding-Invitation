@@ -31,6 +31,22 @@ export default defineConfig({
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
     chunkSizeWarningLimit: 1000,
+    assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name) {
+            if (/\.(mp4|webm|ogg)$/.test(assetInfo.name)) {
+              return 'videos/[name][extname]';
+            }
+            if (/\.(png|jpe?g|gif|svg|webp)$/.test(assetInfo.name)) {
+              return 'images/[name][extname]';
+            }
+          }
+          return 'assets/[name]-[hash][extname]';
+        },
+      },
+    },
   },
   server: {
     port: 5173,
@@ -39,6 +55,7 @@ export default defineConfig({
         target: 'http://localhost:3000',
         changeOrigin: true,
       }
-    }
+    },
+    open: true
   }
 });

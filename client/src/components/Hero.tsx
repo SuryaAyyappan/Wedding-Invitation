@@ -50,9 +50,10 @@ export default function Hero() {
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover opacity-100"
+          style={{ filter: 'brightness(1.2)' }}
         >
-          <source src="/onlyretro (2).mp4" type="video/mp4" />
+          <source src={`${import.meta.env.BASE_URL}videos/onlyretro (2).mp4`} type="video/mp4" />
         </video>
       </div>
 

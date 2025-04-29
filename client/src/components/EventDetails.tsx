@@ -78,9 +78,10 @@ export default function EventDetails() {
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover video-smooth video-scale optimize-transitions"
+          className="absolute inset-0 w-full h-full object-cover video-smooth video-scale optimize-transitions opacity-100"
+          style={{ filter: 'brightness(1.2)' }}
         >
-          <source src="/onlyretro (4).mp4" type="video/mp4" />
+          <source src={`${import.meta.env.BASE_URL}videos/onlyretro (4).mp4`} type="video/mp4" />
         </video>
       </div>
 
@@ -128,9 +129,10 @@ export default function EventDetails() {
                       loop
                       muted
                       playsInline
-                      className="absolute inset-0 w-full h-full object-cover video-smooth video-scale optimize-transitions"
+                      className="absolute inset-0 w-full h-full object-cover video-smooth video-scale optimize-transitions opacity-100"
+                      style={{ filter: 'brightness(1.2)' }}
                     >
-                      <source src="/marriage.mp4" type="video/mp4" />
+                      <source src={`${import.meta.env.BASE_URL}videos/marriage.mp4`} type="video/mp4" />
                     </video>
                   </div>
                 ) : event.title === "Wedding Reception" ? (
@@ -140,9 +142,10 @@ export default function EventDetails() {
                       loop
                       muted
                       playsInline
-                      className="absolute inset-0 w-full h-full object-cover video-smooth video-scale optimize-transitions"
+                      className="absolute inset-0 w-full h-full object-cover video-smooth video-scale optimize-transitions opacity-100"
+                      style={{ filter: 'brightness(1.2)' }}
                     >
-                      <source src="/Reception.mp4" type="video/mp4" />
+                      <source src={`${import.meta.env.BASE_URL}videos/Reception.mp4`} type="video/mp4" />
                     </video>
                   </div>
                 ) : (
