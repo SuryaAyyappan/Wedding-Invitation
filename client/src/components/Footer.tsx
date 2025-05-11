@@ -335,7 +335,7 @@ export default function Footer(): JSX.Element {
                 <div className="space-y-3">
                   {[
                     { username: "johnvijayhari", name: "Hariharan" },
-                    { username: "_raji2730_", name: "Rajarajeswari" },
+                    { username: "vija.ya5126", name: "Bride's Family" },
                     { username: "surya.mastie", name: "Surya" },
                   ].map((profile) => (
                     <motion.a
