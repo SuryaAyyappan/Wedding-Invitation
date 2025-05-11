@@ -262,9 +262,9 @@ export default function Footer(): JSX.Element {
                 <h4 className="font-bold text-lg mb-3 text-center">Call Us</h4>
                 <div className="space-y-3">
                   {[
-                    { number: "6379180447", name: "Family" },
+                    { number: "6379180447", name: "Groom's Family" },
+                    { number: "9626260033", name: "Bride's Family"},
                     { number: "9080165860", name: "Hari"},
-                    { number: "7339115079", name: "Raji"},
                     { number: "9025822579", name: "Surya"}
                   ].map((contact) => (
                     <div key={contact.number} className="flex gap-2">
@@ -303,10 +303,10 @@ export default function Footer(): JSX.Element {
                 <h4 className="font-bold text-lg mb-3 text-center">WhatsApp Us</h4>
                 <div className="space-y-3">
                   {[
-                    { number: "9443292146", name: "Family" },
-                    { number: "9489192146", name: "Hari"},
-                    { number: "7339115079", name: "Raji"},
-                    { number: "9025822579", name: "Surya" }
+                    { number: "6379180447", name: "Groom's Family" },
+                    { number: "9626260033", name: "Bride's Family"},
+                    { number: "9080165860", name: "Hari"},
+                    { number: "9025822579", name: "Surya"}
                   ].map((contact) => (
                     <motion.a
                       key={contact.number}
